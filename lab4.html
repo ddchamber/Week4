@@ -3138,7 +3138,7 @@ vertical-align: -.125em;
 <ol start="2" type="1">
 <li>Parse, merge and tidy your data. Think carefully about what the tidy version of this dataset is with multiple years represented on the website.</li>
 </ol>
-<div id="cell-2" class="cell" data-execution_count="7">
+<div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
@@ -3260,7 +3260,7 @@ vertical-align: -.125em;
 <span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop unneeded columns</span></span>
 <span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="co">#myDataCoffee = myDataCoffee.drop(columns=[&quot;Location Count(Starbucks)&quot;, &quot;Location Count(Dunkin Donuts)&quot;])</span></span>
 <span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>myDataCoffee</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
 
@@ -3748,7 +3748,7 @@ vertical-align: -.125em;
 <ol start="4" type="1">
 <li>Scrape the state names and populations from this wikipedia page. Merge these data with your coffee dataset.</li>
 </ol>
-<div id="cell-4" class="cell" data-execution_count="8">
+<div id="cell-4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import Population data </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(<span class="st">&quot;https://simple.wikipedia.org/wiki/List_of_U.S._states_by_population&quot;</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(response.content, <span class="st">&quot;html.parser&quot;</span>)</span>
@@ -3776,7 +3776,7 @@ vertical-align: -.125em;
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Reindex rows</span></span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>myDataCoffeePop <span class="op">=</span> myDataCoffeePop.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>myDataCoffeePop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -4303,7 +4303,7 @@ vertical-align: -.125em;
 <ol start="5" type="1">
 <li>Find the revenue, stock price, or your financial metric of choice for each of the companies listed above (if you can find a website to scrape these from that’s great!…but it’s okay if you manually enter these). Merge these values into your big dataset. Note: these values may be repeated for each state.</li>
 </ol>
-<div id="cell-6" class="cell" data-execution_count="11">
+<div id="cell-6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Found that anual revenue in 2023 for Starbucks and Dunkin is [36150000000, 1370000000] from Yahoo Finance</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We will create an estimated revenue column that takes a portion of anual revenue divided by store locations in that state</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Focus on 2023 since is only year where ther eis full data for each chain</span></span>
@@ -4315,7 +4315,7 @@ vertical-align: -.125em;
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>dd_rev_per_store <span class="op">=</span> <span class="bu">round</span>(<span class="dv">36150000000</span><span class="op">/</span>dd_total_stores, <span class="dv">2</span>)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>myDataCoffeePop[<span class="st">&#39;Estimated Revenue 2023(Dunkin Donuts)&#39;</span>] <span class="op">=</span> myDataCoffeePop[<span class="st">&#39;Location Count 2023(Dunkin Donuts)&#39;</span>] <span class="op">*</span> dd_rev_per_store</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>myDataCoffeePop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -4330,8 +4330,6 @@ vertical-align: -.125em;
 <th data-quarto-table-cell-role="th">Location Count 2023(Dunkin Donuts)</th>
 <th data-quarto-table-cell-role="th">Location Count 2024(Dunkin Donuts)</th>
 <th data-quarto-table-cell-role="th">Population</th>
-<th data-quarto-table-cell-role="th">Estimated Revenue(Starbucks)</th>
-<th data-quarto-table-cell-role="th">Estimated Revenue(Dunkin Donuts)</th>
 <th data-quarto-table-cell-role="th">Estimated Revenue 2023(Starbucks)</th>
 <th data-quarto-table-cell-role="th">Estimated Revenue 2023(Dunkin Donuts)</th>
 </tr>
@@ -4348,8 +4346,6 @@ vertical-align: -.125em;
 <td>39538223</td>
 <td>7.598580e+09</td>
 <td>5.174768e+08</td>
-<td>7.598580e+09</td>
-<td>5.174768e+08</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
@@ -4360,8 +4356,6 @@ vertical-align: -.125em;
 <td>196.0</td>
 <td>226</td>
 <td>30145505</td>
-<td>3.320678e+09</td>
-<td>7.569063e+08</td>
 <td>3.320678e+09</td>
 <td>7.569063e+08</td>
 </tr>
@@ -4376,8 +4370,6 @@ vertical-align: -.125em;
 <td>21538187</td>
 <td>2.082208e+09</td>
 <td>3.409940e+09</td>
-<td>2.082208e+09</td>
-<td>3.409940e+09</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
@@ -4388,8 +4380,6 @@ vertical-align: -.125em;
 <td>19.0</td>
 <td>0</td>
 <td>7705281</td>
-<td>1.828100e+09</td>
-<td>7.337357e+07</td>
 <td>1.828100e+09</td>
 <td>7.337357e+07</td>
 </tr>
@@ -4404,8 +4394,6 @@ vertical-align: -.125em;
 <td>20201249</td>
 <td>1.707214e+09</td>
 <td>5.460538e+09</td>
-<td>1.707214e+09</td>
-<td>5.460538e+09</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
@@ -4416,8 +4404,6 @@ vertical-align: -.125em;
 <td>692.0</td>
 <td>711</td>
 <td>12812508</td>
-<td>1.670207e+09</td>
-<td>2.672343e+09</td>
 <td>1.670207e+09</td>
 <td>2.672343e+09</td>
 </tr>
@@ -4432,8 +4418,6 @@ vertical-align: -.125em;
 <td>7151502</td>
 <td>1.351955e+09</td>
 <td>3.939002e+08</td>
-<td>1.351955e+09</td>
-<td>3.939002e+08</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">7</td>
@@ -4444,8 +4428,6 @@ vertical-align: -.125em;
 <td>43.0</td>
 <td>48</td>
 <td>5773714</td>
-<td>1.221200e+09</td>
-<td>1.660560e+08</td>
 <td>1.221200e+09</td>
 <td>1.660560e+08</td>
 </tr>
@@ -4460,8 +4442,6 @@ vertical-align: -.125em;
 <td>11799448</td>
 <td>1.211332e+09</td>
 <td>9.461329e+08</td>
-<td>1.211332e+09</td>
-<td>9.461329e+08</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">9</td>
@@ -4472,8 +4452,6 @@ vertical-align: -.125em;
 <td>230.0</td>
 <td>244</td>
 <td>8631393</td>
-<td>1.206398e+09</td>
-<td>8.882064e+08</td>
 <td>1.206398e+09</td>
 <td>8.882064e+08</td>
 </tr>
@@ -4488,8 +4466,6 @@ vertical-align: -.125em;
 <td>4237256</td>
 <td>8.856787e+08</td>
 <td>0.000000e+00</td>
-<td>8.856787e+08</td>
-<td>0.000000e+00</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">11</td>
@@ -4500,8 +4476,6 @@ vertical-align: -.125em;
 <td>629.0</td>
 <td>650</td>
 <td>13002700</td>
-<td>8.807446e+08</td>
-<td>2.429051e+09</td>
 <td>8.807446e+08</td>
 <td>2.429051e+09</td>
 </tr>
@@ -4516,8 +4490,6 @@ vertical-align: -.125em;
 <td>10439388</td>
 <td>8.338702e+08</td>
 <td>7.955240e+08</td>
-<td>8.338702e+08</td>
-<td>7.955240e+08</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">13</td>
@@ -4528,8 +4500,6 @@ vertical-align: -.125em;
 <td>265.0</td>
 <td>287</td>
 <td>10711908</td>
-<td>8.042653e+08</td>
-<td>1.023368e+09</td>
 <td>8.042653e+08</td>
 <td>1.023368e+09</td>
 </tr>
@@ -4544,8 +4514,6 @@ vertical-align: -.125em;
 <td>10077331</td>
 <td>6.981813e+08</td>
 <td>4.054855e+08</td>
-<td>6.981813e+08</td>
-<td>4.054855e+08</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">15</td>
@@ -4556,8 +4524,6 @@ vertical-align: -.125em;
 <td>1068.0</td>
 <td>1042</td>
 <td>7029917</td>
-<td>6.735105e+08</td>
-<td>4.124367e+09</td>
 <td>6.735105e+08</td>
 <td>4.124367e+09</td>
 </tr>
@@ -4572,8 +4538,6 @@ vertical-align: -.125em;
 <td>9288994</td>
 <td>6.439057e+08</td>
 <td>3.344290e+09</td>
-<td>6.439057e+08</td>
-<td>3.344290e+09</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">17</td>
@@ -4584,8 +4548,6 @@ vertical-align: -.125em;
 <td>303.0</td>
 <td>311</td>
 <td>6177224</td>
-<td>6.340374e+08</td>
-<td>1.170115e+09</td>
 <td>6.340374e+08</td>
 <td>1.170115e+09</td>
 </tr>
@@ -4600,8 +4562,6 @@ vertical-align: -.125em;
 <td>3104614</td>
 <td>6.241691e+08</td>
 <td>1.467471e+08</td>
-<td>6.241691e+08</td>
-<td>1.467471e+08</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">19</td>
@@ -4612,8 +4572,6 @@ vertical-align: -.125em;
 <td>104.0</td>
 <td>117</td>
 <td>6785528</td>
-<td>5.452228e+08</td>
-<td>4.016238e+08</td>
 <td>5.452228e+08</td>
 <td>4.016238e+08</td>
 </tr>
@@ -4628,8 +4586,6 @@ vertical-align: -.125em;
 <td>6154913</td>
 <td>4.638095e+08</td>
 <td>1.930883e+08</td>
-<td>4.638095e+08</td>
-<td>1.930883e+08</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">21</td>
@@ -4640,8 +4596,6 @@ vertical-align: -.125em;
 <td>34.0</td>
 <td>38</td>
 <td>5706494</td>
-<td>4.539412e+08</td>
-<td>1.313001e+08</td>
 <td>4.539412e+08</td>
 <td>1.313001e+08</td>
 </tr>
@@ -4656,8 +4610,6 @@ vertical-align: -.125em;
 <td>6910840</td>
 <td>4.440729e+08</td>
 <td>4.749973e+08</td>
-<td>4.440729e+08</td>
-<td>4.749973e+08</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">23</td>
@@ -4668,8 +4620,6 @@ vertical-align: -.125em;
 <td>41.0</td>
 <td>50</td>
 <td>4505836</td>
-<td>4.095339e+08</td>
-<td>1.583324e+08</td>
 <td>4.095339e+08</td>
 <td>1.583324e+08</td>
 </tr>
@@ -4684,8 +4634,6 @@ vertical-align: -.125em;
 <td>5893718</td>
 <td>3.577254e+08</td>
 <td>3.205267e+08</td>
-<td>3.577254e+08</td>
-<td>3.205267e+08</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">25</td>
@@ -4696,8 +4644,6 @@ vertical-align: -.125em;
 <td>103.0</td>
 <td>116</td>
 <td>5118425</td>
-<td>3.231864e+08</td>
-<td>3.977620e+08</td>
 <td>3.231864e+08</td>
 <td>3.977620e+08</td>
 </tr>
@@ -4712,8 +4658,6 @@ vertical-align: -.125em;
 <td>3605944</td>
 <td>3.034498e+08</td>
 <td>1.853648e+09</td>
-<td>3.034498e+08</td>
-<td>1.853648e+09</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">27</td>
@@ -4724,8 +4668,6 @@ vertical-align: -.125em;
 <td>1.0</td>
 <td>2</td>
 <td>3271616</td>
-<td>2.491742e+08</td>
-<td>3.861767e+06</td>
 <td>2.491742e+08</td>
 <td>3.861767e+06</td>
 </tr>
@@ -4740,8 +4682,6 @@ vertical-align: -.125em;
 <td>1455271</td>
 <td>2.442401e+08</td>
 <td>2.317060e+07</td>
-<td>2.442401e+08</td>
-<td>2.317060e+07</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">29</td>
@@ -4752,8 +4692,6 @@ vertical-align: -.125em;
 <td>28.0</td>
 <td>26</td>
 <td>2937880</td>
-<td>2.319047e+08</td>
-<td>1.081295e+08</td>
 <td>2.319047e+08</td>
 <td>1.081295e+08</td>
 </tr>
@@ -4768,8 +4706,6 @@ vertical-align: -.125em;
 <td>3190369</td>
 <td>2.195694e+08</td>
 <td>1.313001e+08</td>
-<td>2.195694e+08</td>
-<td>1.313001e+08</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">31</td>
@@ -4780,8 +4716,6 @@ vertical-align: -.125em;
 <td>59.0</td>
 <td>69</td>
 <td>5024279</td>
-<td>2.097011e+08</td>
-<td>2.278442e+08</td>
 <td>2.097011e+08</td>
 <td>2.278442e+08</td>
 </tr>
@@ -4796,8 +4730,6 @@ vertical-align: -.125em;
 <td>4657757</td>
 <td>2.072340e+08</td>
 <td>6.178827e+07</td>
-<td>2.072340e+08</td>
-<td>6.178827e+07</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">33</td>
@@ -4808,8 +4740,6 @@ vertical-align: -.125em;
 <td>18.0</td>
 <td>23</td>
 <td>3959353</td>
-<td>1.948987e+08</td>
-<td>6.951180e+07</td>
 <td>1.948987e+08</td>
 <td>6.951180e+07</td>
 </tr>
@@ -4824,8 +4754,6 @@ vertical-align: -.125em;
 <td>2117522</td>
 <td>1.874974e+08</td>
 <td>7.337357e+07</td>
-<td>1.874974e+08</td>
-<td>7.337357e+07</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">35</td>
@@ -4836,8 +4764,6 @@ vertical-align: -.125em;
 <td>0.0</td>
 <td>0</td>
 <td>1839106</td>
-<td>1.652938e+08</td>
-<td>0.000000e+00</td>
 <td>1.652938e+08</td>
 <td>0.000000e+00</td>
 </tr>
@@ -4852,8 +4778,6 @@ vertical-align: -.125em;
 <td>1961504</td>
 <td>1.430902e+08</td>
 <td>8.882064e+07</td>
-<td>1.430902e+08</td>
-<td>8.882064e+07</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">37</td>
@@ -4864,8 +4788,6 @@ vertical-align: -.125em;
 <td>9.0</td>
 <td>14</td>
 <td>3011524</td>
-<td>1.356889e+08</td>
-<td>3.475590e+07</td>
 <td>1.356889e+08</td>
 <td>3.475590e+07</td>
 </tr>
@@ -4880,8 +4802,6 @@ vertical-align: -.125em;
 <td>733391</td>
 <td>1.208865e+08</td>
 <td>0.000000e+00</td>
-<td>1.208865e+08</td>
-<td>0.000000e+00</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">39</td>
@@ -4892,8 +4812,6 @@ vertical-align: -.125em;
 <td>12.0</td>
 <td>14</td>
 <td>2961279</td>
-<td>7.894629e+07</td>
-<td>4.634120e+07</td>
 <td>7.894629e+07</td>
 <td>4.634120e+07</td>
 </tr>
@@ -4908,8 +4826,6 @@ vertical-align: -.125em;
 <td>1084225</td>
 <td>7.894629e+07</td>
 <td>0.000000e+00</td>
-<td>7.894629e+07</td>
-<td>0.000000e+00</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">41</td>
@@ -4920,8 +4836,6 @@ vertical-align: -.125em;
 <td>159.0</td>
 <td>164</td>
 <td>1362359</td>
-<td>7.401215e+07</td>
-<td>6.140209e+08</td>
 <td>7.401215e+07</td>
 <td>6.140209e+08</td>
 </tr>
@@ -4936,8 +4850,6 @@ vertical-align: -.125em;
 <td>1377529</td>
 <td>7.154508e+07</td>
 <td>8.418652e+08</td>
-<td>7.154508e+07</td>
-<td>8.418652e+08</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">43</td>
@@ -4948,8 +4860,6 @@ vertical-align: -.125em;
 <td>160.0</td>
 <td>159</td>
 <td>1097379</td>
-<td>6.661093e+07</td>
-<td>6.178827e+08</td>
 <td>6.661093e+07</td>
 <td>6.178827e+08</td>
 </tr>
@@ -4964,8 +4874,6 @@ vertical-align: -.125em;
 <td>989948</td>
 <td>6.167679e+07</td>
 <td>2.548766e+08</td>
-<td>6.167679e+07</td>
-<td>2.548766e+08</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">45</td>
@@ -4976,8 +4884,6 @@ vertical-align: -.125em;
 <td>0.0</td>
 <td>0</td>
 <td>886667</td>
-<td>6.167679e+07</td>
-<td>0.000000e+00</td>
 <td>6.167679e+07</td>
 <td>0.000000e+00</td>
 </tr>
@@ -4992,8 +4898,6 @@ vertical-align: -.125em;
 <td>1793716</td>
 <td>6.167679e+07</td>
 <td>1.042677e+08</td>
-<td>6.167679e+07</td>
-<td>1.042677e+08</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">47</td>
@@ -5004,8 +4908,6 @@ vertical-align: -.125em;
 <td>1.0</td>
 <td>1</td>
 <td>576851</td>
-<td>5.674265e+07</td>
-<td>3.861767e+06</td>
 <td>5.674265e+07</td>
 <td>3.861767e+06</td>
 </tr>
@@ -5020,8 +4922,6 @@ vertical-align: -.125em;
 <td>779094</td>
 <td>3.207193e+07</td>
 <td>0.000000e+00</td>
-<td>3.207193e+07</td>
-<td>0.000000e+00</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">49</td>
@@ -5034,8 +4934,6 @@ vertical-align: -.125em;
 <td>643077</td>
 <td>1.973657e+07</td>
 <td>1.892266e+08</td>
-<td>1.973657e+07</td>
-<td>1.892266e+08</td>
 </tr>
 </tbody>
 </table>
@@ -5046,7 +4944,7 @@ vertical-align: -.125em;
 <ol start="6" type="1">
 <li>Create a region variable in your dataset according to the scheme on this wikipedia page: Northeast, Midwest, South, West. You do not need to scrape this information.</li>
 </ol>
-<div id="cell-8" class="cell" data-execution_count="12">
+<div id="cell-8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> state_to_region(state_abbr):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    state_region_mapping <span class="op">=</span> {</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Northeast</span></span>
@@ -5077,7 +4975,7 @@ vertical-align: -.125em;
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>myDataCoffeePop[<span class="st">&quot;Region&quot;</span>] <span class="op">=</span> myDataCoffeePop[<span class="st">&quot;State&quot;</span>].<span class="bu">apply</span>(state_to_region)</span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>myDataCoffeePop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -5092,8 +4990,6 @@ vertical-align: -.125em;
 <th data-quarto-table-cell-role="th">Location Count 2023(Dunkin Donuts)</th>
 <th data-quarto-table-cell-role="th">Location Count 2024(Dunkin Donuts)</th>
 <th data-quarto-table-cell-role="th">Population</th>
-<th data-quarto-table-cell-role="th">Estimated Revenue(Starbucks)</th>
-<th data-quarto-table-cell-role="th">Estimated Revenue(Dunkin Donuts)</th>
 <th data-quarto-table-cell-role="th">Estimated Revenue 2023(Starbucks)</th>
 <th data-quarto-table-cell-role="th">Estimated Revenue 2023(Dunkin Donuts)</th>
 <th data-quarto-table-cell-role="th">Region</th>
@@ -5111,8 +5007,6 @@ vertical-align: -.125em;
 <td>39538223</td>
 <td>7.598580e+09</td>
 <td>5.174768e+08</td>
-<td>7.598580e+09</td>
-<td>5.174768e+08</td>
 <td>West</td>
 </tr>
 <tr class="even">
@@ -5124,8 +5018,6 @@ vertical-align: -.125em;
 <td>196.0</td>
 <td>226</td>
 <td>30145505</td>
-<td>3.320678e+09</td>
-<td>7.569063e+08</td>
 <td>3.320678e+09</td>
 <td>7.569063e+08</td>
 <td>South</td>
@@ -5141,8 +5033,6 @@ vertical-align: -.125em;
 <td>21538187</td>
 <td>2.082208e+09</td>
 <td>3.409940e+09</td>
-<td>2.082208e+09</td>
-<td>3.409940e+09</td>
 <td>South</td>
 </tr>
 <tr class="even">
@@ -5154,8 +5044,6 @@ vertical-align: -.125em;
 <td>19.0</td>
 <td>0</td>
 <td>7705281</td>
-<td>1.828100e+09</td>
-<td>7.337357e+07</td>
 <td>1.828100e+09</td>
 <td>7.337357e+07</td>
 <td>West</td>
@@ -5171,8 +5059,6 @@ vertical-align: -.125em;
 <td>20201249</td>
 <td>1.707214e+09</td>
 <td>5.460538e+09</td>
-<td>1.707214e+09</td>
-<td>5.460538e+09</td>
 <td>Northeast</td>
 </tr>
 <tr class="even">
@@ -5184,8 +5070,6 @@ vertical-align: -.125em;
 <td>692.0</td>
 <td>711</td>
 <td>12812508</td>
-<td>1.670207e+09</td>
-<td>2.672343e+09</td>
 <td>1.670207e+09</td>
 <td>2.672343e+09</td>
 <td>Midwest</td>
@@ -5201,8 +5085,6 @@ vertical-align: -.125em;
 <td>7151502</td>
 <td>1.351955e+09</td>
 <td>3.939002e+08</td>
-<td>1.351955e+09</td>
-<td>3.939002e+08</td>
 <td>West</td>
 </tr>
 <tr class="even">
@@ -5214,8 +5096,6 @@ vertical-align: -.125em;
 <td>43.0</td>
 <td>48</td>
 <td>5773714</td>
-<td>1.221200e+09</td>
-<td>1.660560e+08</td>
 <td>1.221200e+09</td>
 <td>1.660560e+08</td>
 <td>West</td>
@@ -5231,8 +5111,6 @@ vertical-align: -.125em;
 <td>11799448</td>
 <td>1.211332e+09</td>
 <td>9.461329e+08</td>
-<td>1.211332e+09</td>
-<td>9.461329e+08</td>
 <td>Midwest</td>
 </tr>
 <tr class="even">
@@ -5244,8 +5122,6 @@ vertical-align: -.125em;
 <td>230.0</td>
 <td>244</td>
 <td>8631393</td>
-<td>1.206398e+09</td>
-<td>8.882064e+08</td>
 <td>1.206398e+09</td>
 <td>8.882064e+08</td>
 <td>South</td>
@@ -5261,8 +5137,6 @@ vertical-align: -.125em;
 <td>4237256</td>
 <td>8.856787e+08</td>
 <td>0.000000e+00</td>
-<td>8.856787e+08</td>
-<td>0.000000e+00</td>
 <td>West</td>
 </tr>
 <tr class="even">
@@ -5274,8 +5148,6 @@ vertical-align: -.125em;
 <td>629.0</td>
 <td>650</td>
 <td>13002700</td>
-<td>8.807446e+08</td>
-<td>2.429051e+09</td>
 <td>8.807446e+08</td>
 <td>2.429051e+09</td>
 <td>Northeast</td>
@@ -5291,8 +5163,6 @@ vertical-align: -.125em;
 <td>10439388</td>
 <td>8.338702e+08</td>
 <td>7.955240e+08</td>
-<td>8.338702e+08</td>
-<td>7.955240e+08</td>
 <td>South</td>
 </tr>
 <tr class="even">
@@ -5304,8 +5174,6 @@ vertical-align: -.125em;
 <td>265.0</td>
 <td>287</td>
 <td>10711908</td>
-<td>8.042653e+08</td>
-<td>1.023368e+09</td>
 <td>8.042653e+08</td>
 <td>1.023368e+09</td>
 <td>South</td>
@@ -5321,8 +5189,6 @@ vertical-align: -.125em;
 <td>10077331</td>
 <td>6.981813e+08</td>
 <td>4.054855e+08</td>
-<td>6.981813e+08</td>
-<td>4.054855e+08</td>
 <td>Midwest</td>
 </tr>
 <tr class="even">
@@ -5334,8 +5200,6 @@ vertical-align: -.125em;
 <td>1068.0</td>
 <td>1042</td>
 <td>7029917</td>
-<td>6.735105e+08</td>
-<td>4.124367e+09</td>
 <td>6.735105e+08</td>
 <td>4.124367e+09</td>
 <td>Northeast</td>
@@ -5351,8 +5215,6 @@ vertical-align: -.125em;
 <td>9288994</td>
 <td>6.439057e+08</td>
 <td>3.344290e+09</td>
-<td>6.439057e+08</td>
-<td>3.344290e+09</td>
 <td>Northeast</td>
 </tr>
 <tr class="even">
@@ -5364,8 +5226,6 @@ vertical-align: -.125em;
 <td>303.0</td>
 <td>311</td>
 <td>6177224</td>
-<td>6.340374e+08</td>
-<td>1.170115e+09</td>
 <td>6.340374e+08</td>
 <td>1.170115e+09</td>
 <td>South</td>
@@ -5381,8 +5241,6 @@ vertical-align: -.125em;
 <td>3104614</td>
 <td>6.241691e+08</td>
 <td>1.467471e+08</td>
-<td>6.241691e+08</td>
-<td>1.467471e+08</td>
 <td>West</td>
 </tr>
 <tr class="even">
@@ -5394,8 +5252,6 @@ vertical-align: -.125em;
 <td>104.0</td>
 <td>117</td>
 <td>6785528</td>
-<td>5.452228e+08</td>
-<td>4.016238e+08</td>
 <td>5.452228e+08</td>
 <td>4.016238e+08</td>
 <td>Midwest</td>
@@ -5411,8 +5267,6 @@ vertical-align: -.125em;
 <td>6154913</td>
 <td>4.638095e+08</td>
 <td>1.930883e+08</td>
-<td>4.638095e+08</td>
-<td>1.930883e+08</td>
 <td>Midwest</td>
 </tr>
 <tr class="even">
@@ -5424,8 +5278,6 @@ vertical-align: -.125em;
 <td>34.0</td>
 <td>38</td>
 <td>5706494</td>
-<td>4.539412e+08</td>
-<td>1.313001e+08</td>
 <td>4.539412e+08</td>
 <td>1.313001e+08</td>
 <td>Midwest</td>
@@ -5441,8 +5293,6 @@ vertical-align: -.125em;
 <td>6910840</td>
 <td>4.440729e+08</td>
 <td>4.749973e+08</td>
-<td>4.440729e+08</td>
-<td>4.749973e+08</td>
 <td>South</td>
 </tr>
 <tr class="even">
@@ -5454,8 +5304,6 @@ vertical-align: -.125em;
 <td>41.0</td>
 <td>50</td>
 <td>4505836</td>
-<td>4.095339e+08</td>
-<td>1.583324e+08</td>
 <td>4.095339e+08</td>
 <td>1.583324e+08</td>
 <td>South</td>
@@ -5471,8 +5319,6 @@ vertical-align: -.125em;
 <td>5893718</td>
 <td>3.577254e+08</td>
 <td>3.205267e+08</td>
-<td>3.577254e+08</td>
-<td>3.205267e+08</td>
 <td>Midwest</td>
 </tr>
 <tr class="even">
@@ -5484,8 +5330,6 @@ vertical-align: -.125em;
 <td>103.0</td>
 <td>116</td>
 <td>5118425</td>
-<td>3.231864e+08</td>
-<td>3.977620e+08</td>
 <td>3.231864e+08</td>
 <td>3.977620e+08</td>
 <td>South</td>
@@ -5501,8 +5345,6 @@ vertical-align: -.125em;
 <td>3605944</td>
 <td>3.034498e+08</td>
 <td>1.853648e+09</td>
-<td>3.034498e+08</td>
-<td>1.853648e+09</td>
 <td>Northeast</td>
 </tr>
 <tr class="even">
@@ -5514,8 +5356,6 @@ vertical-align: -.125em;
 <td>1.0</td>
 <td>2</td>
 <td>3271616</td>
-<td>2.491742e+08</td>
-<td>3.861767e+06</td>
 <td>2.491742e+08</td>
 <td>3.861767e+06</td>
 <td>West</td>
@@ -5531,8 +5371,6 @@ vertical-align: -.125em;
 <td>1455271</td>
 <td>2.442401e+08</td>
 <td>2.317060e+07</td>
-<td>2.442401e+08</td>
-<td>2.317060e+07</td>
 <td>West</td>
 </tr>
 <tr class="even">
@@ -5544,8 +5382,6 @@ vertical-align: -.125em;
 <td>28.0</td>
 <td>26</td>
 <td>2937880</td>
-<td>2.319047e+08</td>
-<td>1.081295e+08</td>
 <td>2.319047e+08</td>
 <td>1.081295e+08</td>
 <td>Midwest</td>
@@ -5561,8 +5397,6 @@ vertical-align: -.125em;
 <td>3190369</td>
 <td>2.195694e+08</td>
 <td>1.313001e+08</td>
-<td>2.195694e+08</td>
-<td>1.313001e+08</td>
 <td>Midwest</td>
 </tr>
 <tr class="even">
@@ -5574,8 +5408,6 @@ vertical-align: -.125em;
 <td>59.0</td>
 <td>69</td>
 <td>5024279</td>
-<td>2.097011e+08</td>
-<td>2.278442e+08</td>
 <td>2.097011e+08</td>
 <td>2.278442e+08</td>
 <td>South</td>
@@ -5591,8 +5423,6 @@ vertical-align: -.125em;
 <td>4657757</td>
 <td>2.072340e+08</td>
 <td>6.178827e+07</td>
-<td>2.072340e+08</td>
-<td>6.178827e+07</td>
 <td>South</td>
 </tr>
 <tr class="even">
@@ -5604,8 +5434,6 @@ vertical-align: -.125em;
 <td>18.0</td>
 <td>23</td>
 <td>3959353</td>
-<td>1.948987e+08</td>
-<td>6.951180e+07</td>
 <td>1.948987e+08</td>
 <td>6.951180e+07</td>
 <td>South</td>
@@ -5621,8 +5449,6 @@ vertical-align: -.125em;
 <td>2117522</td>
 <td>1.874974e+08</td>
 <td>7.337357e+07</td>
-<td>1.874974e+08</td>
-<td>7.337357e+07</td>
 <td>West</td>
 </tr>
 <tr class="even">
@@ -5634,8 +5460,6 @@ vertical-align: -.125em;
 <td>0.0</td>
 <td>0</td>
 <td>1839106</td>
-<td>1.652938e+08</td>
-<td>0.000000e+00</td>
 <td>1.652938e+08</td>
 <td>0.000000e+00</td>
 <td>West</td>
@@ -5651,8 +5475,6 @@ vertical-align: -.125em;
 <td>1961504</td>
 <td>1.430902e+08</td>
 <td>8.882064e+07</td>
-<td>1.430902e+08</td>
-<td>8.882064e+07</td>
 <td>Midwest</td>
 </tr>
 <tr class="even">
@@ -5664,8 +5486,6 @@ vertical-align: -.125em;
 <td>9.0</td>
 <td>14</td>
 <td>3011524</td>
-<td>1.356889e+08</td>
-<td>3.475590e+07</td>
 <td>1.356889e+08</td>
 <td>3.475590e+07</td>
 <td>South</td>
@@ -5681,8 +5501,6 @@ vertical-align: -.125em;
 <td>733391</td>
 <td>1.208865e+08</td>
 <td>0.000000e+00</td>
-<td>1.208865e+08</td>
-<td>0.000000e+00</td>
 <td>West</td>
 </tr>
 <tr class="even">
@@ -5694,8 +5512,6 @@ vertical-align: -.125em;
 <td>12.0</td>
 <td>14</td>
 <td>2961279</td>
-<td>7.894629e+07</td>
-<td>4.634120e+07</td>
 <td>7.894629e+07</td>
 <td>4.634120e+07</td>
 <td>South</td>
@@ -5711,8 +5527,6 @@ vertical-align: -.125em;
 <td>1084225</td>
 <td>7.894629e+07</td>
 <td>0.000000e+00</td>
-<td>7.894629e+07</td>
-<td>0.000000e+00</td>
 <td>West</td>
 </tr>
 <tr class="even">
@@ -5724,8 +5538,6 @@ vertical-align: -.125em;
 <td>159.0</td>
 <td>164</td>
 <td>1362359</td>
-<td>7.401215e+07</td>
-<td>6.140209e+08</td>
 <td>7.401215e+07</td>
 <td>6.140209e+08</td>
 <td>Northeast</td>
@@ -5741,8 +5553,6 @@ vertical-align: -.125em;
 <td>1377529</td>
 <td>7.154508e+07</td>
 <td>8.418652e+08</td>
-<td>7.154508e+07</td>
-<td>8.418652e+08</td>
 <td>Northeast</td>
 </tr>
 <tr class="even">
@@ -5754,8 +5564,6 @@ vertical-align: -.125em;
 <td>160.0</td>
 <td>159</td>
 <td>1097379</td>
-<td>6.661093e+07</td>
-<td>6.178827e+08</td>
 <td>6.661093e+07</td>
 <td>6.178827e+08</td>
 <td>Northeast</td>
@@ -5771,8 +5579,6 @@ vertical-align: -.125em;
 <td>989948</td>
 <td>6.167679e+07</td>
 <td>2.548766e+08</td>
-<td>6.167679e+07</td>
-<td>2.548766e+08</td>
 <td>South</td>
 </tr>
 <tr class="even">
@@ -5784,8 +5590,6 @@ vertical-align: -.125em;
 <td>0.0</td>
 <td>0</td>
 <td>886667</td>
-<td>6.167679e+07</td>
-<td>0.000000e+00</td>
 <td>6.167679e+07</td>
 <td>0.000000e+00</td>
 <td>Midwest</td>
@@ -5801,8 +5605,6 @@ vertical-align: -.125em;
 <td>1793716</td>
 <td>6.167679e+07</td>
 <td>1.042677e+08</td>
-<td>6.167679e+07</td>
-<td>1.042677e+08</td>
 <td>South</td>
 </tr>
 <tr class="even">
@@ -5814,8 +5616,6 @@ vertical-align: -.125em;
 <td>1.0</td>
 <td>1</td>
 <td>576851</td>
-<td>5.674265e+07</td>
-<td>3.861767e+06</td>
 <td>5.674265e+07</td>
 <td>3.861767e+06</td>
 <td>West</td>
@@ -5831,8 +5631,6 @@ vertical-align: -.125em;
 <td>779094</td>
 <td>3.207193e+07</td>
 <td>0.000000e+00</td>
-<td>3.207193e+07</td>
-<td>0.000000e+00</td>
 <td>Midwest</td>
 </tr>
 <tr class="even">
@@ -5844,8 +5642,6 @@ vertical-align: -.125em;
 <td>49.0</td>
 <td>50</td>
 <td>643077</td>
-<td>1.973657e+07</td>
-<td>1.892266e+08</td>
 <td>1.973657e+07</td>
 <td>1.892266e+08</td>
 <td>Northeast</td>
@@ -5865,7 +5661,7 @@ vertical-align: -.125em;
 <ul>
 <li>How is the revenue divided by each region for each company?</li>
 </ul>
-<div id="cell-10" class="cell" data-execution_count="13">
+<div id="cell-10" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> ggplot, geom_bar, aes, facet_wrap, labs, theme, element_text, scale_fill_manual</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>analyze <span class="op">=</span> myDataCoffeePop</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># First let us look at each region</span></span>
@@ -5902,7 +5698,7 @@ vertical-align: -.125em;
 <ul>
 <li>How is the revenue divided for each state within the regions.</li>
 </ul>
-<div id="cell-12" class="cell" data-execution_count="14">
+<div id="cell-12" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>melted_data <span class="op">=</span> analyze.melt(id_vars<span class="op">=</span>[<span class="st">&#39;State&#39;</span>, <span class="st">&quot;Region&quot;</span>],</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                                   value_vars<span class="op">=</span>[<span class="st">&#39;Estimated Revenue 2023(Starbucks)&#39;</span>, <span class="st">&#39;Estimated Revenue 2023(Dunkin Donuts)&#39;</span>], </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                                   var_name<span class="op">=</span><span class="st">&#39;Chain&#39;</span>, </span>
@@ -5937,7 +5733,7 @@ vertical-align: -.125em;
 <ul>
 <li>Does the distribution of each chain’s stores match population distribution, by both state/region?</li>
 </ul>
-<div id="cell-14" class="cell" data-execution_count="15">
+<div id="cell-14" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column for stores per capita for both Starbucks and Dunkin&#39;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>analyze[<span class="st">&#39;Starbucks_per_capita&#39;</span>] <span class="op">=</span> analyze[<span class="st">&#39;Location Count 2023(Starbucks)&#39;</span>] <span class="op">/</span> analyze[<span class="st">&#39;Population&#39;</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>analyze[<span class="st">&#39;Dunkin_per_capita&#39;</span>] <span class="op">=</span> analyze[<span class="st">&#39;Location Count 2023(Dunkin Donuts)&#39;</span>] <span class="op">/</span> analyze[<span class="st">&#39;Population&#39;</span>]</span>
@@ -5986,7 +5782,7 @@ vertical-align: -.125em;
 <li><p>Extract the name of the company from either the URL specified or the webpage (assume the URL will have the same format as the ones used above)</p></li>
 <li><p>Return a clean, organized and tidy dataset. Find a page other than Starbucks and Dunkin’ Donuts to test this on to confirm that it works. It’s fine if this is not related to coffee.</p></li>
 </ul>
-<div id="cell-17" class="cell" data-execution_count="20">
+<div id="cell-17" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scrape_table(URL, Company):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(URL)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    soup <span class="op">=</span> BeautifulSoup(response.content, <span class="st">&quot;html.parser&quot;</span>)</span>
@@ -6014,7 +5810,7 @@ vertical-align: -.125em;
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>wallmartData <span class="op">=</span> scrape_table(<span class="st">&#39;https://worldpopulationreview.com/state-rankings/walmart-stores-by-state&#39;</span>, <span class="st">&quot;Walmart&quot;</span>)</span>
 <span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>wallmartData</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
 
